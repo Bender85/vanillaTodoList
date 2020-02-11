@@ -1,0 +1,88 @@
+$body-color: slateblue;
+
+body {
+  color: $body-color;
+  font-family: sans-serif;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.todo {
+  width: 320px;
+  height: 480px;
+  background-color: grey;
+  padding: 10px;
+  border-radius: 25px;
+}
+
+.todo-form {
+  display: flex;
+  justify-content: space-between;
+  .input-doto {
+    border: none;
+    outline: none;
+    height: 50px;
+    border-radius: 25px;
+    width: 210px;
+    font-size: 18px;
+    padding: 0 25px;
+  }
+  .add-todo {
+    border: none;
+    background-color: greenyellow;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    transition: all 0.2s ease;
+    color: white;
+    font-size: 28px;
+    line-height: 50px;
+    &:hover {
+      cursor: pointer;
+      background-color: goldenrod;
+    }
+  }
+}
+.list-container {
+  overflow: hidden;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  overflow-y: auto;
+  height: 345px;
+  .todo-list {
+    padding: 0;
+    margin: 10px 0 0 0;
+    list-style-type: none;
+    text-align: left;
+    .todo-list-item {
+      position: relative;
+      background-color: khaki;
+      line-height: 25px;
+      height: 25px;
+      padding: 8px;
+      &:not(:last-child) {
+        border-bottom: 1px solid red;
+      }
+      span {
+        position: absolute;
+        right: 10px;
+        top: 11px;
+        width: 20px;
+        height: 20px;
+        border-radius: 100%;
+        background-color: lightcoral;
+        text-align: center;
+        line-height: 20px;
+        font-size: 15px;
+        &:hover {
+          cursor: pointer;
+          background-color: red;
+          color: white;
+        }
+      }
+    }
+  }
+}
