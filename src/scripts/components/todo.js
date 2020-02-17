@@ -1,9 +1,8 @@
-// import getList from "./service";
-// import prototype from "./prototype";
-// import { autocomplete } from "./autocomplete.js";
-const addInput = document.querySelector(".input-doto");
+import getList from "../services/service";
+import autocomplete from "./autocomplete";
+const addInput = document.getElementById("addInput");
 const todoList = document.querySelector(".todo-list");
-const todoForm = document.querySelector(".todo-form");
+const todoForm = document.querySelector(".add-todo");
 const removeList = document.querySelector(".remove-List");
 const listIsEmptyText = document.querySelector(".list-empty");
 const suggestions = document.querySelector(".suggestions");
@@ -24,12 +23,12 @@ let addTodo = e => {
 };
 
 let createList = (list = [], listTarget) => {
-  // if (list.length) {
-  //   listIsEmptyText.classList.add("hidden");
-  // }
+  if (list.length) {
+    listIsEmptyText.classList.add("hidden");
+  }
   listTarget.innerHTML = list
     .map((item, i) => {
-      return `<li class="todo-list-item">
+      return `<li>
     <input type="checkbox" id="todo${i}" data-index="${i}"
            ${item.done ? "checked" : ""} />
     <label for="todo${i}">${item.title}
@@ -54,15 +53,15 @@ let removeSingle = e => {
   const index = el.dataset.index;
   todos.splice(index, 1);
   saveTodos();
-  // if (todos.length === 0) {
-  //   removeList.classList.add("hidden");
-  // }
+  if (todos.length === 0) {
+    listIsEmptyText.classList.remove("hidden");
+  }
 };
 
 let saveTodos = () => {
   localStorage.setItem("todoList", JSON.stringify(todos));
   createList(todos, todoList);
-  showRemoveButton();
+  // showRemoveButton();
   addInput.value = "";
 };
 
@@ -74,10 +73,10 @@ let removeData = () => {
   listIsEmptyText.classList.remove("hidden");
 };
 
-let showRemoveButton = () => {
-  // if (todos.length > 1) return;
-  // removeList.classList.remove("hidden");
-};
+// let showRemoveButton = () => {
+//   if (todos.length > 1) return;
+//   removeList.classList.remove("hidden");
+// };
 
 todoList.addEventListener("click", toggleDone);
 todoList.addEventListener("click", removeSingle);
@@ -86,6 +85,6 @@ todoForm.addEventListener("submit", addTodo);
 
 // Init list
 createList(todos, todoList);
-// prototype(addInput, suggestions, getList());
+autocomplete(addInput, suggestions, getList());
 // autocomplete(addInput, getList());
 // export default addTodo;

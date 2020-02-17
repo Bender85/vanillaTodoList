@@ -3,24 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <title>simple todo list with autocomplete</title>
 </head>
 <body>
-  <div id="todo" class="todo">
-    <h1>Todo List</h1>
-    <form action="" class="todo-form">
+  <h1 class="todo-title">Todo List</h1>
+  <div id="todo" class="todo-container">
+    <form action="" class="add-todo">
       <input
-      class="input-doto"
-      name="addItem"
-      type="text"
-      placeholder="... some input"
-      autocomplete="off"
+        autocomplete="off"
+        id="addInput"
+        type="text"
+        placeholder="Don't Forget to..."
+        name="item"
       />
-      <button class="add-todo">+</button>
+      <input type="submit" value="+" />
     </form>
-    <div class="list-container">
-      <ul class="todo-list"></ul>
-    </div>
+    <div class="suggestions"></div>
+    <div class="list-empty">List is empty</div>
+    <ul class="todo-list"></ul>
   </div>
 </body>
 </html>

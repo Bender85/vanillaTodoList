@@ -1,4 +1,7 @@
 import '../styles/index.scss';
-import './todo';
+import './components/todo';
+// import Todo from './autocomplete';
 
-console.log('webpack starterkit');
+// let todo = new Todo();
+
+console.log('webpack is started');

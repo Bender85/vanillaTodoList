@@ -1,11 +1,35 @@
-someData = [];
-class todo {
+let mockData = [{
+  id: '1',
+  title: 'This is title',
+  done: false,
+  date: new Date()
+}, {
+  id: '2',
+  title: 'This is second title',
+  done: false,
+  date: new Date()
+}, {
+  id: '3',
+  title: 'This is third title',
+  done: false,
+  date: new Date()
+}, {
+  id: '4',
+  title: 'This is forth title',
+  done: false,
+  date: new Date()
+}];
+
+class Todo {
+
   constructor() {
     let self = this;
-    this.list = document.querySelector('.todo-list');
+
+    this.list = document.querySelector('.list-items');
     this.render();
 
-    document.querySelector('.add-todo').addEventListener('click', this.insertItem.bind(this));
+    document.querySelector('.btn-add-item').addEventListener('click', this.insertItem.bind(this));
+    document.querySelector('.btn-update').addEventListener('click', this.updateItem.bind(this));
 
     document.addEventListener('click', event => {
       if (!event.target) {
@@ -17,10 +41,10 @@ class todo {
       }
 
       if (event.target.classList.contains('btn-edit')) {
-        self.renderEditForm('event');
+        self.renderEditForm(event);
       }
 
-      if (event.target.classList.contains('btn-delete')) {
+      if (event.target.classList.contains('btn-complete')) {
         self.setTaskComplete(event);
       }
     });
@@ -29,26 +53,26 @@ class todo {
   render() {
     this.list.innerHTML = '';
 
-    someData.forEach(item => {
+    mockData.forEach(item => {
       this.createDomElements(item.id);
-      this.li.insertAdjacentHTML('afterbin', item.title);
+      this.li.insertAdjacentHTML('afterbegin', item.title);
 
       if (item.done) {
-        this.li.classLint.add('done');
+        this.li.classList.add('done');
       }
 
       this.list.appendChild(this.li);
     });
   }
 
-  renderEditForm() {
+  renderEditForm(event) {
     let id = event.target.getAttribute('data-id');
 
     document.querySelector('.edit-popup').classList.remove('hide');
     document.querySelector('.edit-popup').classList.add('show');
     document.querySelector('.btn-update').setAttribute('data-id', id);
 
-    someData.forEach(item => {
+    mockData.forEach(item => {
       if (item.id === id) {
         document.querySelector('.edit-item').value = item.title;
       }
@@ -73,8 +97,8 @@ class todo {
     this.delete.innerHTML = 'Delete';
     this.complete.innerHTML = 'Complete';
 
-    this.li.appendChild(this.edit);
     this.li.appendChild(this.delete);
+    this.li.appendChild(this.edit);
     this.li.appendChild(this.complete);
   }
 
@@ -88,7 +112,7 @@ class todo {
       date: new Date()
     };
 
-    someData.push(newItem);
+    mockData.push(newItem);
 
     document.querySelector('.item').value = '';
     this.render();
@@ -97,11 +121,29 @@ class todo {
   removeItem(event) {
     let id = event.target.getAttribute('data-id');
 
-    someData = someData.filter(item => {
+    mockData = mockData.filter(item => {
       if (item.id !== id) {
         return item;
       }
     });
+
+    this.render();
+  }
+
+  updateItem(event) {
+    let id = event.target.getAttribute('data-id');
+    let itemTobeUpdated = document.querySelector('.edit-item').value;
+
+    mockData = mockData.map(item => {
+      if (item.id === id) {
+        item['title'] = itemTobeUpdated;
+      }
+
+      return item;
+    });
+
+    document.querySelector('.edit-popup').classList.remove('show');
+    document.querySelector('.edit-popup').classList.add('hide');
 
     this.render();
   }
@@ -121,4 +163,4 @@ class todo {
   }
 }
 
-export default todo;
+export default Todo;
