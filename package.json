@@ -41,7 +41,7 @@
     "husky": "^4.2.1",
     "lint-staged": "^10.0.7",
     "mini-css-extract-plugin": "^0.8.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "pre-commit": "^1.2.2",
     "prettier-eslint": "^9.0.1",
     "sass-loader": "^8.0.2",
