@@ -7,7 +7,8 @@ let myToDoList = [
   "go to my friends",
   "do my homework",
   "clean my room",
-  "read fanrtasy book"
+  "read fartasy book",
+  "do my sport exercise"
 ];
 let SetData = arr => {
   // set some list for autocomplete to store
